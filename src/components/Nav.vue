@@ -39,5 +39,8 @@ nav {
       height: 32px;
     }
   }
+  > .item.selected{
+    color: red;
+  }
 }
 </style>
