@@ -22,6 +22,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@import "~@/assets/style/helper.scss";
 nav {
   display: flex;
   box-shadow: 0 0 3px rgba(0,0,0,0.25); // 阴影,让导航栏看起来是浮起来的
@@ -40,7 +41,7 @@ nav {
     }
   }
   > .item.selected{
-    color: red;
+    color: $color-highlight;
   }
 }
 </style>
