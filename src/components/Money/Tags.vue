@@ -31,6 +31,7 @@ export default {
     > li {
       background: #d9d9d9;
       $h: 24px;
+      line-height: $h;
       height: $h;
       border-radius: $h/2;
       padding: 1px 16px;
