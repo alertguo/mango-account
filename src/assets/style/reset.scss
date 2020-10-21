@@ -12,3 +12,9 @@ a{
   /*继承颜色*/
   color: inherit;
 }
+button,input{
+  font: inherit;
+}
+//:focus{
+//  outline: none;
+//}
