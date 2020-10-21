@@ -30,12 +30,15 @@
 @import "~@/assets/style/helper.scss";
 .numberPad {
   .output {
+    @extend %clearfix;
+    @extend %innerShadow;
     font-size: 24px;
     font-family: Consolas,monospace;
     padding: 18px 16px;
     text-align: right;
   }
   .buttons {
+    @extend %clearfix;
     button {
       width: 25%;
       height: 64px;
