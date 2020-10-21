@@ -22,7 +22,7 @@ export default {
 .tags {
   font-size: 14px;
   padding: 16px;
-  //flex-grow: 1;
+  flex-grow: 1;
   display: flex;
   flex-direction: column-reverse;
   > .current {
