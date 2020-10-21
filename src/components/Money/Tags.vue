@@ -1,6 +1,8 @@
 <template>
   <div class="tags">
-    <div class="new"><button>新增标签</button></div>
+    <div class="new">
+      <button>新增标签</button>
+    </div>
     <ul class="current">
       <li>衣</li>
       <li>食</li>
@@ -11,13 +13,13 @@
 </template>
 
 <script lang="ts">
-  export default {
-    name: "Tags"
-  }
+export default {
+  name: 'Tags'
+};
 </script>
 
 <style lang="scss" scoped>
-.tags{
+.tags {
   font-size: 14px;
   padding: 16px;
   //flex-grow: 1;
@@ -47,16 +49,4 @@
     }
   }
 }
-
-//  > .new {
-//    padding-top: 16px;
-//    button {
-//      background: transparent;
-//      border: none;
-//      color: #999;
-//      border-bottom: 1px solid;
-//      padding: 0 4px;
-//    }
-//  }
-//}
 </style>
