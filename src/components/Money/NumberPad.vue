@@ -21,9 +21,9 @@
 </template>
 
 <script lang="ts">
-  export default {
-    name: "NumberPad"
-  }
+export default {
+  name: 'NumberPad'
+};
 </script>
 
 <style lang="scss" scoped>
@@ -32,9 +32,9 @@
   .output {
     @extend %clearfix;
     @extend %innerShadow;
-    font-size: 24px;
+    font-size: 36px;
     font-family: Consolas,monospace;
-    padding: 18px 16px;
+    padding: 9px 16px;
     text-align: right;
   }
   .buttons {
