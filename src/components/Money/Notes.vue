@@ -18,8 +18,8 @@ export default class Notes extends Vue {
   value = '';
 
   @Watch('value')
-  onChildChange(value: string) {
-    this.$emit('updateValue', value);
+  onValueChanged(value: string) {
+    this.$emit('update:value', value);
   }
 }
 </script>

@@ -1,9 +1,9 @@
 <template>
   <Layout class-prefix="layout">
     {{ record }}
-    <NumberPad @updata:value="onUpdateAmount"/>
+    <NumberPad @update:value="onUpdateAmount"/>
     <Types @update:value="onUpdateType"/>
-    <Notes @undate:value="onUpdateNotes"/>
+    <Notes @update:value="onUpdateNotes"/>
     <Tags :data-source.sync="tags" @update:value="onUpdateTags"/>
   </Layout>
 </template>
