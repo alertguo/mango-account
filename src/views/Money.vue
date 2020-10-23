@@ -2,7 +2,7 @@
   <Layout class-prefix="layout">
     {{ record }}
     <NumberPad @update:value="onUpdateAmount"/>
-    <Types @update:value="onUpdateType"/>
+    <Types :value="record.type" @update:value="onUpdateType"/>
     <Notes @update:value="onUpdateNotes"/>
     <Tags :data-source.sync="tags" @update:value="onUpdateTags"/>
   </Layout>
