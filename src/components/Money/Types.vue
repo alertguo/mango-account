@@ -22,7 +22,7 @@ export default class Types extends Vue {
   }
 
   @Watch('type')
-  onTypeChange(value: string) {
+  onTypeChanged(value: string) {
     this.$emit('update:value', value);
   }
 }
