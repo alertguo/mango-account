@@ -54,11 +54,11 @@ export default class NumberPad extends Vue {
   }
 
   clear() {
-    this.output = '0'
+    this.output = '0';
   }
 
   ok() {
-    // 还需要其他的指定，数据保存到哪里
+    this.$emit('update: value', this.output);
   }
 }
 </script>
