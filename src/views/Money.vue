@@ -1,6 +1,6 @@
 <template>
   <Layout class-prefix="layout">
-    {{ record }}
+    {{ recordList }}
     <NumberPad :value.sync="record.amount" @submit="saveRecord"/>
     <Types :value.sync="record.type"/>
     <Notes @update:value="onUpdateNotes"/>
@@ -27,7 +27,7 @@ type Record = {
 })
 export default class Money extends Vue {
   tags = ['衣', '食', '住', '行', '彩票'];
-  recordList: Record[] = [];
+  recordList: Record[] = JSON.parse(window.localStorage.getItem('recordList') || '[]');
   record: Record = {
     tags: [], notes: '', type: '-', amount: 0
   };
