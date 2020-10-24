@@ -16,6 +16,7 @@ import Types from '@/components/Money/Types.vue';
 import NumberPad from '@/components/Money/NumberPad.vue';
 import {Component, Watch} from 'vue-property-decorator';
 
+const recordList: Record[] = JSON.parse(window.localStorage.getItem('recordList') || '[]');
 type Record = {
   tags: string[];
   notes: string;
@@ -28,7 +29,7 @@ type Record = {
 })
 export default class Money extends Vue {
   tags = ['衣', '食', '住', '行', '彩票'];
-  recordList: Record[] = JSON.parse(window.localStorage.getItem('recordList') || '[]');
+  recordList: Record[] = recordList;
   record: Record = {
     tags: [], notes: '', type: '-', amount: 0,
   };
