@@ -18,7 +18,7 @@ import recordListModel from '@/models/recordListModel';
 import tagListModel from '@/models/tagListModel';
 
 const recordList = recordListModel.fetch();
-const tagList = tagListModel.fetch();
+const tagList = tagListModel.fetch().map(item => item.name);
 
 
 @Component({
