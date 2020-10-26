@@ -8,7 +8,7 @@
         <Icon name="right"/>
       </router-link>
     </div>
-    <Button @click.native="createTag">
+    <Button @click="createTag">
       新建标签
     </Button>
   </Layout>

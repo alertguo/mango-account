@@ -1,11 +1,14 @@
 <template>
   <Layout>
-    <div>
+    <div class="navBar">
       <Icon name="left"/>
-      <span>编辑标签</span>
+      <span class="title">编辑标签</span>
+      <span class="rightIcon"></span>
     </div>
-    <FormItem field-name="标签名"
-              placeholder="在这里输入标签名"/>
+    <div class="form-wrapper">
+      <FormItem field-name="标签名"
+                placeholder="在这里输入标签名"/>
+    </div>
     <Button>
       删除标签
     </Button>
@@ -38,5 +41,30 @@ export default class EditLabel extends Vue {
 </script>
 
 <style lang="scss" scoped>
+.navBar {
+  text-align: center;
+  font-size: 16px;
+  padding: 12px 16px;
+  background: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 
+  > .title {
+  }
+
+  > svg {
+    width: 16px;
+    height: 16px;
+  }
+
+  > .rightIcon {
+    width: 16px;
+    height: 16px;
+  }
+}
+.form-wrapper{
+  background: #ffffff;
+  margin-top: 8px;
+}
 </style>

@@ -1,7 +1,7 @@
 <template>
-  <div class="button-wrapper">
-    <button class="button"
-            >
+  <div class="button-wrapper"
+       @click="$emit('click','$event')">
+    <button class="button">
       <slot/>
     </button>
   </div>
