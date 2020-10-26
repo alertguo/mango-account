@@ -7,7 +7,8 @@
     </div>
     <div class="form-wrapper">
       <FormItem :value="tag.name" field-name="标签名"
-                placeholder="在这里输入标签名"/>
+                placeholder="在这里输入标签名"
+                @update:value="update"/>
     </div>
     <Button>
       删除标签
@@ -37,6 +38,12 @@ export default class EditLabel extends Vue {
       this.tag = tag;
     } else {
       this.$router.replace('/404');
+    }
+  }
+
+  update(name: string) {
+    if (this.tag) {
+      tagListModel.update(this.tag.id, name);
     }
   }
 }
