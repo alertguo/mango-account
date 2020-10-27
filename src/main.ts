@@ -28,7 +28,9 @@ window.removeTag = (id: string) => {
 window.updateTag = (id, name) => {
   return tagListModel.update(id, name);
 };
-
+window.findTag = (id) => {
+  return window.tagList.filter(t => t.id === id)[0];
+};
 new Vue({
   router,
   store,

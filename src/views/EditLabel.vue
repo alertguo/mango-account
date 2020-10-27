@@ -26,15 +26,11 @@ import Button from '@/components/Button.vue';
   components: {Button, FormItem}
 })
 export default class EditLabel extends Vue {
-  tag?: { id: string; name: string } = undefined;
+  tag?: Tag = undefined;
 
   created() {
-    const id = this.$route.params.id;
-    const tags = window.tagList;
-    const tag = tags.filter(t => t.id === id)[0];
-    if (tag) {
-      this.tag = tag;
-    } else {
+    this.tag = window.findTag(this.$route.params.id);
+    if (!this.tag) {
       this.$router.replace('/404');
     }
   }
