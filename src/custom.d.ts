@@ -9,12 +9,4 @@ type Tag = {
   id: string;
   name: string;
 }
-type tagListModel = {
-  data: Tag[];
-  fetch: () => Tag[];
-  create: (name: string) => 'success' | 'duplicated'; // 联合类型
-  update: (id: string, name: string) => 'success' | 'duplicated' | 'not-found';
-  remove: (id: string) => boolean;
-  save: () => void;
-}
 
