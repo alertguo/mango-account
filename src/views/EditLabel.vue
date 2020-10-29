@@ -26,9 +26,10 @@ import Button from '@/components/Button.vue';
   components: {Button, FormItem},
 })
 export default class EditLabel extends Vue {
-  get tag(){
-    return this.$store.state.currentTag
+  get tag() {
+    return this.$store.state.currentTag;
   }
+
   created() {
     const id = this.$route.params.id;
     this.$store.commit('setCurrentTag', id);
@@ -38,9 +39,9 @@ export default class EditLabel extends Vue {
   }
 
   update(name: string) {
+    console.log(name);
     if (this.tag) {
-      // TODO
-      // this.$store.updateTag(this.tag.id, name);
+      this.$store.commit('updateTag', {id: this.tag.id, name});
     }
   }
 
