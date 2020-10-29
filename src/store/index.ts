@@ -17,6 +17,7 @@ const store = new Vuex.Store({
       state.recordList = JSON.parse(window.localStorage.getItem('recordList') || '[]') as RecordItem[];
     },
     setCurrentTag(state, id: string) {
+      store.commit('fetchTag');
       state.currentTag = state.tagList.filter(t => t.id === id)[0];
     },
     updateTag(state, payload: { id: string; name: string }) {
