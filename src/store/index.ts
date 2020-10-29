@@ -35,6 +35,22 @@ const store = new Vuex.Store({
         return 'not-found';
       }
     },
+    removeTag(state, id: string) {
+      let index = -1;
+      for (let i = 0; i < state.tagList.length; i++) {
+        if (state.tagList[i].id === id) {
+          index = i;
+          break;
+        }
+      }
+      if (index >= 0) {
+        state.tagList.splice(index, 1);
+        store.commit('saveTag');
+        router.back();
+      } else {
+        window.alert('删除失败');
+      }
+    },
     createRecord(state, record) {
       const record2: RecordItem = clone(record);
       record2.createdAt = new Date();

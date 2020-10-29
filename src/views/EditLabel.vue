@@ -39,7 +39,6 @@ export default class EditLabel extends Vue {
   }
 
   update(name: string) {
-    console.log(name);
     if (this.tag) {
       this.$store.commit('updateTag', {id: this.tag.id, name});
     }
@@ -47,13 +46,7 @@ export default class EditLabel extends Vue {
 
   remove() {
     if (this.tag) {
-      // TODO
-      return;
-      // if (this.$store.removeTag(this.tag.id)) {
-      //   this.$router.back();
-      // } else {
-      //   window.alert('删除失败');
-      // }
+      this.$store.commit('removeTag',this.tag.id);
     }
   }
 
