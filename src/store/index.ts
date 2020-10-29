@@ -8,11 +8,15 @@ Vue.use(Vuex);
 const store = new Vuex.Store({
   state: {
     recordList: [] as RecordItem[],
-    tagList: [] as Tag[]
+    tagList: [] as Tag[],
+    currentTag: {} as Tag
   },
   mutations: {
     fetchRecord(state) {
       state.recordList = JSON.parse(window.localStorage.getItem('recordList') || '[]') as RecordItem[];
+    },
+    setCurrentTag(state, id: string) {
+      state.currentTag = state.tagList.filter(t => t.id === id)[0];
     },
     createRecord(state, record) {
       const record2: RecordItem = clone(record);
