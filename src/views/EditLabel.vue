@@ -21,7 +21,6 @@ import Vue from 'vue';
 import {Component} from 'vue-property-decorator';
 import FormItem from '@/components/Money/FormItem.vue';
 import Button from '@/components/Button.vue';
-import oldStore from '@/store/index2';
 
 @Component({
   components: {Button, FormItem}
@@ -30,7 +29,8 @@ export default class EditLabel extends Vue {
   tag?: Tag = undefined;
 
   created() {
-    this.tag = oldStore.findTag(this.$route.params.id);
+    // TODO
+    // this.tag = this.$store.findTag(this.$route.params.id);
     if (!this.tag) {
       this.$router.replace('/404');
     }
@@ -38,17 +38,20 @@ export default class EditLabel extends Vue {
 
   update(name: string) {
     if (this.tag) {
-      oldStore.updateTag(this.tag.id, name);
+      // TODO
+      // this.$store.updateTag(this.tag.id, name);
     }
   }
 
   remove() {
     if (this.tag) {
-      if (oldStore.removeTag(this.tag.id)) {
-        this.$router.back();
-      } else {
-        window.alert('删除失败');
-      }
+      // TODO
+      return;
+      // if (this.$store.removeTag(this.tag.id)) {
+      //   this.$router.back();
+      // } else {
+      //   window.alert('删除失败');
+      // }
     }
   }
 
