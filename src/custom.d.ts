@@ -1,5 +1,5 @@
 type RecordItem = {
-  tags: string[];
+  tags: Tag[];
   formItem: string;
   type: string;
   amount: number; // 上面的都是数据类型
