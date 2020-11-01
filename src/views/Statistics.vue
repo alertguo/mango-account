@@ -7,13 +7,10 @@
           :value.sync="interval"
           class-prefix="interval"/>
     <div>
-      type: {{ type }}
-      <br/>
-      interval: {{ interval }}
     </div>
     <div>
       <ol>
-        <li v-for="(group,index) in result" :key="index">
+        <li v-for="(group,index) in groupedList" :key="index">
           <h3 class="title">{{ beautify(group.title) }}</h3>
           <ol>
             <li v-for="item in group.items" :key="item.id"
@@ -52,14 +49,21 @@ export default class Statistics extends Vue {
     return this.$store.state.recordList;
   }
 
-  get result() {
+  get groupedList() {
     const {recordList} = this;
-    type HashTableValue = { title: string; items: RecordItem[] }
-    // const hashTable: { title: string; items: RecordItem[] }[];
-    console.log(recordList.map(i => i.createdAt));
+    if (recordList.length === 0) { return [];}
     const newList = clone(recordList).sort((a, b) => dayjs(b.createdAt).valueOf() - dayjs(a.createdAt).valueOf());
-    console.log(newList.map(i => i.createdAt));
-    return [];
+    const result = [{title: dayjs(newList[0].createdAt).format('YYYY-MM-DD'), items: [newList[0]]}];
+    for (let i = 1; i < newList.length; i++) {
+      const current = newList[i];
+      const last = result[result.length - 1];
+      if (dayjs(last.title).isSame(dayjs(current.createdAt), 'day')) {
+        last.items.push(current);
+      } else {
+        result.push({title: dayjs(current.createdAt).format('YYYY-MM-DD'), items: [current]});
+      }
+    }
+    return result;
   }
 
   beautify(string: string) {
