@@ -13,7 +13,14 @@
     </div>
     <div>
       <ol>
-        <li v-for="item in result" :key="item.id">{{ item }}</li>
+        <li v-for="(group,index) in result" :key="index">
+          <ol>
+            <li v-for="item in group" :key="item.id">
+              {{ item.amount }}
+              {{ item.createdAt }}
+            </li>
+          </ol>
+        </li>
       </ol>
     </div>
   </Layout>
@@ -42,10 +49,14 @@ export default class Statistics extends Vue {
   }
 
   get result() {
-    for (let i = 0; i < this.recordList.length; i++) {
-      console.log(this.recordList[i].createdAt);
+    const {recordList} = this;
+    const hashTable: { [key: string]: RecordItem[] } = {};
+    for (let i = 0; i < recordList.length; i++) {
+      const [date, time] = recordList[i].createdAt.split('T');
+      hashTable[date] = hashTable[date] || [];
+      hashTable[date].push(recordList[i]);
     }
-    return [];
+    return hashTable;
   }
 
   created() {
