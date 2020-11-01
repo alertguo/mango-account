@@ -16,7 +16,6 @@
 <script lang="ts">
 import Vue from 'vue';
 import Tags from '@/components/Money/Tags.vue';
-import Types from '@/components/Money/Types.vue';
 import NumberPad from '@/components/Money/NumberPad.vue';
 import {Component} from 'vue-property-decorator';
 import FormItem from '@/components/Money/FormItem.vue';
@@ -25,7 +24,7 @@ import recordTypeList from '@/constants/recordTypeList';
 
 
 @Component({
-  components: {Tabs, FormItem, NumberPad, Types, Tags},
+  components: {Tabs, FormItem, NumberPad, Tags},
 })
 export default class Money extends Vue {
   record: RecordItem = {
@@ -51,7 +50,7 @@ export default class Money extends Vue {
 
 }
 </script>
-<style lang="scss">
+<style lang="scss" scoped>
 .layout-content {
   display: flex;
   flex-direction: column-reverse;
