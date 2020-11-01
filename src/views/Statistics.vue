@@ -14,7 +14,7 @@
     <div>
       <ol>
         <li v-for="(group,index) in result" :key="index">
-          <h3 class="title">{{ group.title }}</h3>
+          <h3 class="title">{{ beautify(group.title) }}</h3>
           <ol>
             <li v-for="item in group.items" :key="item.id"
                 class="record">
@@ -28,31 +28,6 @@
     </div>
   </Layout>
 </template>
-<style lang="scss" scoped>
-%item {
-  padding: 8px 16px;
-  line-height: 24px;
-  display: flex;
-  justify-content: space-between;
-  align-content: center;
-}
-
-.title {
-  @extend %item;
-}
-
-.record {
-  @extend %item;
-  background: #ffffff;
-
-  > .notes {
-    margin-right: auto;
-    margin-left: 16px;
-    color: #999999;
-  }
-}
-</style>
-
 
 <script lang="ts">
 import Vue from 'vue';
@@ -60,6 +35,9 @@ import {Component} from 'vue-property-decorator';
 import Tabs from '@/components/Tabs.vue';
 import intervalList from '@/constants/intervalList';
 import recordTypeList from '@/constants/recordTypeList';
+import dayjs from 'dayjs';
+
+const oneDay = 86400 * 1000;
 
 @Component({
   components: {Tabs}
@@ -69,10 +47,6 @@ export default class Statistics extends Vue {
   interval = 'day';
   intervalList = intervalList;
   recordTypeList = recordTypeList;
-
-  tagString(tags){
-    return tags.length === 0 ? '无' : tags.join('')
-  }
 
   get recordList() {
     return this.$store.state.recordList;
@@ -88,6 +62,23 @@ export default class Statistics extends Vue {
       hashTable[date].items.push(recordList[i]);
     }
     return hashTable;
+  }
+
+  beautify(string: string) {
+    const now = new Date();
+    if (dayjs(string).isSame(now, 'day')) {
+      return '今天';
+    } else if (dayjs(string).isSame(now.valueOf() - oneDay, 'day')) {
+      return '昨天';
+      } else if (dayjs(string).isSame(now.valueOf() - oneDay * 2, 'day')) {
+        return '前天';
+    } else {
+      return string;
+    }
+  }
+
+  tagString(tags) {
+    return tags.length === 0 ? '无' : tags.join('');
   }
 
   created() {
@@ -111,6 +102,29 @@ export default class Statistics extends Vue {
 
   .interval-tabs-item {
     height: 48px;
+  }
+}
+
+%item {
+  padding: 8px 16px;
+  line-height: 24px;
+  display: flex;
+  justify-content: space-between;
+  align-content: center;
+}
+
+.title {
+  @extend %item;
+}
+
+.record {
+  @extend %item;
+  background: #ffffff;
+
+  > .notes {
+    margin-right: auto;
+    margin-left: 16px;
+    color: #999999;
   }
 }
 </style>
