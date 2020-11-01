@@ -29,7 +29,7 @@ export default class Tags extends mixins(TagHelper) {
     this.$store.commit('fetchTag');
   }
 
-  toggle(tag: string) {
+  toggle(tag: Tag) {
     const index = this.selectedTags.indexOf(tag);
     if (index >= 0) {
       this.selectedTags.splice(index, 1);
