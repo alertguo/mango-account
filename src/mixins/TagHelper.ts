@@ -13,7 +13,7 @@ export class TagHelper extends Vue {
     this.$store.commit('createTag', name);
     if (this.$store.state.createTagError) {
       if (this.$store.state.createTagError.message === 'tag name duplicated') {
-        window.alert(map[this.$store.state.createTagError.message]);
+        window.alert(map[this.$store.state.createTagError.message] || '未知错误');
       }
     }
   }
