@@ -8,10 +8,11 @@ Vue.use(Vuex);
 
 const store = new Vuex.Store({
   state: {
-    recordList: [] as RecordItem[],
-    tagList: [] as Tag[],
-    currentTag: {} as Tag
-  },
+    recordList: [],
+    createRecordError: null,
+    tagList: [],
+    currentTag: undefined
+  } as RootState,
   mutations: {
     fetchRecord(state) {
       state.recordList = JSON.parse(window.localStorage.getItem('recordList') || '[]') as RecordItem[];
@@ -57,7 +58,6 @@ const store = new Vuex.Store({
       record2.createdAt = new Date().toISOString();
       state.recordList?.push(record2);
       store.commit('saveRecord');
-      window.alert('已保存');
     },
     saveRecord(state) {
       window.localStorage.setItem('recordList', JSON.stringify(state.recordList));
