@@ -4,10 +4,9 @@
     <Tabs :data-source="recordTypeList"
           :value.sync="record.type"/>
     <div class="notes">
-      <FormItem :value="record.formItem"
+      <FormItem :value.sync="record.formItem"
                 field-name="备注"
                 placeholder="在这里输入备注"
-                @update:value="onUpdateFormItem"
       />
     </div>
     <Tags @update:value="record.tags = $event"/>
@@ -41,10 +40,6 @@ export default class Money extends Vue {
     this.$store.commit('fetchRecord');
   }
 
-  onUpdateFormItem(value: string) {
-    this.record.formItem = value;
-  }
-
   saveRecord() {
     if (!this.record.tags || this.record.tags.length === 0) {
       return window.alert('请至少选择一个标签');
@@ -53,6 +48,7 @@ export default class Money extends Vue {
     if (this.$store.state.createRecordError === null) {
       window.alert('已保存');
       this.record.formItem = '';
+      // this.$store.commit('fetchTag');
     }
   }
 
