@@ -87,8 +87,8 @@ export default class Statistics extends Vue {
     }
   }
 
-  tagString(tags) {
-    return tags.length === 0 ? '无标签' : tags[0].name;
+  tagString(tags: Tag[]) {
+    return tags.length === 0 ? '无标签' : tags.map(t=>t.name).join('，');
   }
 
   created() {

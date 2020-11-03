@@ -9,7 +9,7 @@
                 @update:value="onUpdateFormItem"
       />
     </div>
-    <Tags :value.sync="record.tags"/>
+    <Tags @update:value="record.tags = $event"/>
   </Layout>
 </template>
 
