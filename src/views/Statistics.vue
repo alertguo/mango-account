@@ -87,7 +87,7 @@ export default class Statistics extends Vue {
   }
 
   tagString(tags: Tag[]) {
-    return tags.length === 0 ? '无标签' : tags.map(t => t.name).join('，');
+    return tags.map(t => t.name).join('，');
   }
 
   created() {
@@ -102,6 +102,7 @@ export default class Statistics extends Vue {
   padding: 16px;
   text-align: center;
 }
+
 ::v-deep {
   .type-tabs-item {
     &.selected {
