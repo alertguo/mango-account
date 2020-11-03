@@ -3,25 +3,24 @@
     <Tabs :data-source="recordTypeList"
           :value.sync="type"
           class-prefix="type"/>
-    <div>
-    </div>
-    <div>
-      <ol>
-        <li v-for="(group,index) in groupedList" :key="index">
-          <h3 class="title">
-            {{ beautify(group.title) }}
-            <span>￥{{ group.total }}</span>
-          </h3>
-          <ol>
-            <li v-for="item in group.items" :key="item.id"
-                class="record">
-              <span>{{ tagString(item.tags) }}</span>
-              <span class="notes">{{ item.formItem }}</span>
-              <span>￥{{ item.amount }}</span>
-            </li>
-          </ol>
-        </li>
-      </ol>
+    <ol v-if="groupedList.length > 0">
+      <li v-for="(group,index) in groupedList" :key="index">
+        <h3 class="title">
+          {{ beautify(group.title) }}
+          <span>￥{{ group.total }}</span>
+        </h3>
+        <ol>
+          <li v-for="item in group.items" :key="item.id"
+              class="record">
+            <span>{{ tagString(item.tags) }}</span>
+            <span class="notes">{{ item.formItem }}</span>
+            <span>￥{{ item.amount }}</span>
+          </li>
+        </ol>
+      </li>
+    </ol>
+    <div v-else class="noResult">
+      您目前还没有相关的记账
     </div>
   </Layout>
 </template>
@@ -88,7 +87,7 @@ export default class Statistics extends Vue {
   }
 
   tagString(tags: Tag[]) {
-    return tags.length === 0 ? '无标签' : tags.map(t=>t.name).join('，');
+    return tags.length === 0 ? '无标签' : tags.map(t => t.name).join('，');
   }
 
   created() {
@@ -99,6 +98,10 @@ export default class Statistics extends Vue {
 
 
 <style lang="scss" scoped>
+.noResult {
+  padding: 16px;
+  text-align: center;
+}
 ::v-deep {
   .type-tabs-item {
     &.selected {
