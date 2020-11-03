@@ -57,6 +57,7 @@ const store = new Vuex.Store({
       record2.createdAt = new Date().toISOString();
       state.recordList?.push(record2);
       store.commit('saveRecord');
+      window.alert('已保存')
     },
     saveRecord(state) {
       window.localStorage.setItem('recordList', JSON.stringify(state.recordList));
