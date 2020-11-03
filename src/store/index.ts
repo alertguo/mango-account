@@ -52,18 +52,24 @@ const store = new Vuex.Store({
         window.alert('删除失败');
       }
     },
-    createRecord(state, record) {
-      const record2: RecordItem = clone(record);
+    createRecord(state, record: RecordItem) {
+      const record2 = clone(record);
       record2.createdAt = new Date().toISOString();
       state.recordList?.push(record2);
       store.commit('saveRecord');
-      window.alert('已保存')
+      window.alert('已保存');
     },
     saveRecord(state) {
       window.localStorage.setItem('recordList', JSON.stringify(state.recordList));
     },
     fetchTag(state) {
       state.tagList = JSON.parse(window.localStorage.getItem('tagList') || '[]');
+      if (!state.tagList || state.tagList.length === 0) {
+        store.commit('createTag', '衣服');
+        store.commit('createTag', '食物');
+        store.commit('createTag', '交通出行');
+        store.commit('createTag', '其他');
+      }
     },
     createTag(state, name: string) {
       const names = state.tagList.map(item => item.name);
