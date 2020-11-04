@@ -48,7 +48,7 @@ export default class Money extends Vue {
     if (this.$store.state.createRecordError === null) {
       window.alert('已保存');
       this.record.formItem = '';
-      // this.$store.commit('fetchTag');
+      this.$store.commit('fetchTag');
     }
   }
 
