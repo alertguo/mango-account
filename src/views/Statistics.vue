@@ -42,7 +42,7 @@ export default class Statistics extends Vue {
   recordTypeList = recordTypeList;
 
   get recordList() {
-    return this.$store.state.recordList;
+    return (this.$store.state as RootState).recordList;
   }
 
   get groupedList() {
