@@ -1,8 +1,6 @@
 <template>
   <Layout class-prefix="layout">
     <NumberPad :value.sync="record.amount" @submit="saveRecord"/>
-    <Tabs :data-source="recordTypeList"
-          :value.sync="record.type"/>
     <div class="notes">
       <FormItem :value.sync="record.formItem"
                 field-name="备注"
@@ -10,6 +8,8 @@
       />
     </div>
     <Tags @update:value="record.tags = $event"/>
+    <Tabs :data-source="recordTypeList"
+          :value.sync="record.type"/>
   </Layout>
 </template>
 
@@ -60,7 +60,7 @@ export default class Money extends Vue {
   flex-direction: column-reverse;
 
   .notes {
-    padding: 10px 0;
+    padding: 0;
   }
 }
 </style>
