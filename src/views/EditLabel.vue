@@ -6,7 +6,7 @@
       <span class="rightIcon"></span>
     </div>
     <div class="form-wrapper">
-      <FormItem :value="currentTag.name" field-name="标签名"
+      <FormItem :value="currentTag.name" field-name="标签名："
                 placeholder="在这里输入标签名"
                 @update:value="update"/>
     </div>
