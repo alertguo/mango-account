@@ -3,8 +3,8 @@
     <NumberPad :value.sync="record.amount" @submit="saveRecord"/>
     <div class="notes">
       <FormItem :value.sync="record.formItem"
-                field-name="备注"
-                placeholder="在这里输入备注"
+                field-name="备注："
+                placeholder="点击写备注..."
       />
     </div>
     <Tags @update:value="record.tags = $event"/>
