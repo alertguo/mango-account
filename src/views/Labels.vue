@@ -10,7 +10,7 @@
         <Icon name="right"/>
       </router-link>
     </div>
-    <Button @click="createTag">
+    <Button @click="createTag(type)">
       新建标签
     </Button>
   </Layout>
