@@ -19,11 +19,11 @@ import TagHelper from '@/mixins/TagHelper.ts';
 
 @Component
 export default class Tags extends mixins(TagHelper) {
-  @Prop(String) value: string;
+  @Prop(String) value!: string;
   selectedTags: string[] = [];
 
   get tagList() {
-    return this.$store.state.tagList.filter(r => r.type === this.value);
+    return this.$store.state.tagList.filter((item: { type: string }) => item.type === this.value);
   }
 
   created() {

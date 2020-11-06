@@ -7,7 +7,7 @@
                 placeholder="点击写备注..."
       />
     </div>
-    <Tags :value="this.record.type" @update:value="record.tags = $event"/>
+    <Tags :value="record.type" @update:value="record.tags = $event"/>
     <Tabs :data-source="recordTypeList"
           :value.sync="record.type"/>
   </Layout>
