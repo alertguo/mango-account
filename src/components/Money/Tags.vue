@@ -1,7 +1,7 @@
 <template>
   <div class="tags">
     <div class="new">
-      <button @click="createTag">新增标签</button>
+      <button @click="createTag(value)">新增标签</button>
     </div>
     <ul class="current">
       <li v-for="tag in tagList" :key="tag.id"
@@ -20,8 +20,6 @@ import TagHelper from '@/mixins/TagHelper.ts';
 @Component
 export default class Tags extends mixins(TagHelper) {
   @Prop(String) value: string;
-  @Watch('value')
-
   selectedTags: string[] = [];
 
   get tagList() {
@@ -31,6 +29,8 @@ export default class Tags extends mixins(TagHelper) {
   created() {
     this.$store.commit('fetchTag');
   }
+
+  @Watch('value')
 
   toggle(tag: string) {
     const index = this.selectedTags.indexOf(tag);
