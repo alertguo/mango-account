@@ -66,13 +66,15 @@ const store = new Vuex.Store({
     fetchTag(state) {
       state.tagList = JSON.parse(window.localStorage.getItem('tagList') || '[]');
       if (!state.tagList || state.tagList.length === 0) {
-        store.commit('createTag', '衣服');
-        store.commit('createTag', '食物');
-        store.commit('createTag', '交通出行');
-        store.commit('createTag', '其他');
+        store.commit('createTag', {name: '餐饮', type: '-', svg: '餐饮'});
+        store.commit('createTag', {name: '购物', type: '-', svg: '购物'});
+        store.commit('createTag', {name: '交通', type: '-', svg: '交通'});
+        store.commit('createTag', {name: '日用', type: '-', svg: '日用'});
+        store.commit('createTag', {name: '其他', type: '-', svg: '其他'});
+        store.commit('createTag', {name: '工资', type: '+', svg: '工资'});
       }
     },
-    createTag(state, name: string) {
+    createTag(state, newTag: NewTag) {
       state.createTagError = null;
       const names = state.tagList.map(item => item.name);
       if (names.indexOf(name) >= 0) {
@@ -80,7 +82,7 @@ const store = new Vuex.Store({
         return;
       }
       const id = createId().toString();
-      state.tagList.push({id, name: name});
+      state.tagList.push({id, name: newTag.name, type: newTag.type, svg: newTag.svg});
       store.commit('saveTag');
     },
     saveTag(state) {

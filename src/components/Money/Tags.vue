@@ -13,16 +13,19 @@
 </template>
 
 <script lang="ts">
-import {Component} from 'vue-property-decorator';
+import {Component, Prop, Watch} from 'vue-property-decorator';
 import mixins from 'vue-class-component';
 import TagHelper from '@/mixins/TagHelper.ts';
 
 @Component
 export default class Tags extends mixins(TagHelper) {
+  @Prop(String) value: string;
+  @Watch('value')
+
   selectedTags: string[] = [];
 
   get tagList() {
-    return this.$store.state.tagList;
+    return this.$store.state.tagList.filter(r => r.type === this.value);
   }
 
   created() {

@@ -8,6 +8,13 @@ type RecordItem = {
 type Tag = {
   id: string;
   name: string;
+  type: string;
+  svg: string;
+}
+type NewTag = {
+  name: string;
+  type: string;
+  svg: string;
 }
 type RootState = {
   recordList: RecordItem[];
