@@ -28,17 +28,18 @@ export default class Tags extends mixins(TagHelper) {
 
   created() {
     this.$store.commit('fetchTag');
+    this.selectedTags.push(this.tagList[0]);
   }
 
   @Watch('value')
+  onValueChanged() {
+    this.selectedTags = [];
+    this.selectedTags.push(this.tagList[0]);
+  }
 
   toggle(tag: string) {
-    const index = this.selectedTags.indexOf(tag);
-    if (index >= 0) {
-      this.selectedTags.splice(index, 1);
-    } else {
-      this.selectedTags.push(tag);
-    }
+    this.selectedTags = [];
+    this.selectedTags.push(tag);
     this.$emit('update:value', this.selectedTags);
   }
 }
