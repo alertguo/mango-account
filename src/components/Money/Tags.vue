@@ -6,7 +6,14 @@
     <ul class="current">
       <li v-for="tag in tagList" :key="tag.id"
           :class="{selected: selectedTags.indexOf(tag)>=0}"
-          @click="toggle(tag)">{{ tag.name }}
+          @click="toggle(tag)"
+      >
+        <div class="tag-wrapper">
+          <Icon :name="tag.svg"/>
+        </div>
+        <div class="tag-name">
+          {{ tag.name }}
+        </div>
       </li>
     </ul>
   </div>
@@ -59,20 +66,39 @@ export default class Tags extends mixins(TagHelper) {
     flex-wrap: wrap;
 
     > li {
-      $bg: #d9d9d9;
-      background: $bg;
-      $h: 24px;
-      line-height: $h;
-      height: $h;
-      border-radius: $h/2;
-      padding: 1px 16px;
-      margin-right: 12px;
-      margin-top: 4px;
+      display: flex;
+      flex-direction: column;
+      width: 25%;
+      align-items: center;
+      font-size: 14px;
+      padding-bottom: 16px;
+
+      .tag-wrapper {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: #d9d9d988;
+        height: 36px;
+        width: 36px;
+        border-radius: 50%;
+
+
+        .icon {
+          width: 24px;
+          height: 24px;
+          vertical-align: -0.15em;
+          fill: currentColor;
+          overflow: hidden;
+        }
+      }
 
       &.selected {
-        background: darken($bg, 50%);
-        color: white;
+        .tag-wrapper {
+          background: #ffda4488;
+        }
       }
+
+
     }
   }
 
