@@ -2,6 +2,7 @@
   <Layout class-prefix="layout">
     <NumberPad :value.sync="record.amount" @submit="saveRecord"/>
     <div class="notes">
+      <Icon name="remark"/>
       <FormItem :value.sync="record.formItem"
                 field-name="备注："
                 placeholder="点击写备注..."
@@ -57,7 +58,9 @@ export default class Money extends Vue {
   flex-direction: column-reverse;
 
   .notes {
-    padding: 0;
+    display: flex;
+    align-items: center;
+    padding-left: 8px;
   }
 }
 </style>

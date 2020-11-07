@@ -1,7 +1,6 @@
 <template>
   <div>
     <label class="formItem">
-      <Icon name="remark"/>
       <span class="name">{{ this.fieldName }}</span>
       <input :placeholder="placeholder"
              :value="value"
@@ -30,13 +29,9 @@ export default class FormItem extends Vue {
 <style lang="scss" scoped>
 .formItem {
   font-size: 14px;
-  padding-left: 8px;
+  padding-left: 4px;
   display: flex;
   align-items: center;
-
-  .name {
-    padding-left: 4px;
-  }
 
   input {
     height: 44px;

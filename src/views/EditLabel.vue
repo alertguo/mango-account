@@ -6,6 +6,7 @@
       <span class="rightIcon"></span>
     </div>
     <div class="form-wrapper">
+      <Icon name="remark"/>
       <FormItem :value="currentTag.name" field-name="标签名："
                 placeholder="在这里输入标签名"
                 @update:value="update"/>
@@ -81,6 +82,9 @@ export default class EditLabel extends Vue {
 }
 
 .form-wrapper {
+  display: flex;
+  align-items: center;
+  padding-left: 8px;
   background: #ffffff;
   margin-top: 8px;
 }
