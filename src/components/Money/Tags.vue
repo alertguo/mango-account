@@ -1,8 +1,8 @@
 <template>
   <div class="tags">
-    <div class="new">
-      <button @click="createTag(value)">新增标签</button>
-    </div>
+<!--    <div class="new">-->
+<!--      <button @click="createTag(value)">新增标签</button>-->
+<!--    </div>-->
     <ul class="current">
       <li v-for="tag in tagList" :key="tag.id"
           :class="{selected: selectedTags.indexOf(tag)>=0}"
@@ -11,9 +11,15 @@
         <div class="tag-wrapper">
           <Icon :name="tag.svg"/>
         </div>
-        <div class="tag-name">
-          {{ tag.name }}
-        </div>
+        {{ tag.name }}
+      </li>
+      <li>
+        <router-link to="/add">
+          <div class="add-tag">
+            <Icon name="addTag"/>
+          </div>
+        </router-link>
+        新增
       </li>
     </ul>
   </div>
@@ -73,7 +79,7 @@ export default class Tags extends mixins(TagHelper) {
       font-size: 14px;
       padding-bottom: 16px;
 
-      .tag-wrapper {
+      .tag-wrapper, .add-tag {
         display: flex;
         align-items: center;
         justify-content: center;
@@ -81,7 +87,6 @@ export default class Tags extends mixins(TagHelper) {
         height: 36px;
         width: 36px;
         border-radius: 50%;
-
 
         .icon {
           width: 24px;
