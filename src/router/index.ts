@@ -31,7 +31,7 @@ const routes: Array<RouteConfig> = [
     component: EditLabel
   },
   {
-    path: '/add',
+    path: '/labels/add',
     component: AddTag
   },
   {

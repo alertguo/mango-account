@@ -1,8 +1,5 @@
 <template>
   <div class="tags">
-<!--    <div class="new">-->
-<!--      <button @click="createTag(value)">新增标签</button>-->
-<!--    </div>-->
     <ul class="current">
       <li v-for="tag in tagList" :key="tag.id"
           :class="{selected: selectedTags.indexOf(tag)>=0}"
@@ -14,7 +11,7 @@
         {{ tag.name }}
       </li>
       <li>
-        <router-link to="/add">
+        <router-link to="/labels/add">
           <div class="add-tag">
             <Icon name="addTag"/>
           </div>
