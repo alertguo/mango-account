@@ -5,13 +5,13 @@
           :class="{selected: selectedTags.indexOf(tag)>=0}"
           @click="toggle(tag)"
       >
-        <div class="tag-wrapper">
+        <div class="icon-wrapper">
           <Icon :name="tag.svg"/>
         </div>
         {{ tag.name }}
       </li>
       <li>
-        <router-link to="/labels/add">
+        <router-link :to="{path: '/labels/add',query: {type: value}}">
           <div class="add-tag">
             <Icon name="addTag"/>
           </div>
@@ -29,7 +29,7 @@ import TagHelper from '@/mixins/TagHelper.ts';
 
 @Component
 export default class Tags extends mixins(TagHelper) {
-  @Prop(String) value!: string;
+  @Prop(String) value?: string;
   selectedTags: string[] = [];
 
   get tagList() {
@@ -76,7 +76,7 @@ export default class Tags extends mixins(TagHelper) {
       font-size: 14px;
       padding-bottom: 16px;
 
-      .tag-wrapper, .add-tag {
+      .icon-wrapper, .add-tag {
         display: flex;
         align-items: center;
         justify-content: center;
@@ -95,7 +95,7 @@ export default class Tags extends mixins(TagHelper) {
       }
 
       &.selected {
-        .tag-wrapper {
+        .icon-wrapper {
           background: #ffda4488;
         }
       }
