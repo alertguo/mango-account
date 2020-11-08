@@ -88,9 +88,6 @@ export default class Tags extends mixins(TagHelper) {
         .icon {
           width: 24px;
           height: 24px;
-          vertical-align: -0.15em;
-          fill: currentColor;
-          overflow: hidden;
         }
       }
 
