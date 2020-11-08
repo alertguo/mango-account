@@ -4,6 +4,7 @@
     <div class="notes">
       <Icon name="remark"/>
       <FormItem :value.sync="record.formItem"
+                class="formItem"
                 field-name="备注："
                 placeholder="点击写备注..."
       />
@@ -61,6 +62,10 @@ export default class Money extends Vue {
     display: flex;
     align-items: center;
     padding-left: 8px;
+
+    .formItem {
+      padding: 4px 0;
+    }
   }
 }
 </style>
