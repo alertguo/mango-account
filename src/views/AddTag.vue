@@ -3,24 +3,31 @@
     <Tabs :data-source="recordTypeList"
           :value.sync="type"/>
     <div class="form-wrapper">
-      <Icon name="皮卡丘"/>
-      <FormItem field-name=""
+      <Icon :name="selectedTags[0]"/>
+      <FormItem class="formItem"
+                field-name=""
                 placeholder="输入标签名（不超过五个字）"/>
     </div>
+    {{ selectedTags }}
     <div class="tags">
-      <h3>
+      <h3 class="title">
         选择图标
       </h3>
       <ul class="current">
-        <li v-for="tag in commonTagList" :key="tag.index">
+        <li v-for="tag in commonTagList"
+            :key="tag.index"
+            :class="{selected: selectedTags.indexOf(tag)>=0}"
+            @click="toggle(tag)">
           <div class="icon-wrapper">
             <Icon :name="tag.name"/>
           </div>
         </li>
       </ul>
-      <button>
-        保存新标签
-      </button>
+      <div class="button-wrapper">
+        <button>
+          保存新标签
+        </button>
+      </div>
     </div>
   </Layout>
 </template>
@@ -32,55 +39,122 @@ import Tabs from '@/components/Tabs.vue';
 import recordTypeList from '@/constants/recordTypeList';
 import FormItem from '@/components/Money/FormItem.vue';
 
+type SelectedTags = {
+  index: number;
+  name: string;
+}
+
 @Component({
   components: {FormItem, Tabs}
 })
 export default class AddTag extends Vue {
   type = this.$route.query.type;
   recordTypeList = recordTypeList;
+  selectedTags: SelectedTags[] = [];
   commonTagList = [
     {index: 1, name: '皮卡丘'},
-    {index: 2, name: '游戏'}
+    {index: 2, name: '游戏'},
+    {index: 7, name: '皮卡丘'},
+    {index: 8, name: '游戏'},
+    {index: 10, name: '游戏'},
+    {index: 6, name: '游戏'},
+    {index: 9, name: '游戏'},
+    {index: 5, name: '游戏'},
+    {index: 4, name: '游戏'},
+    {index: 3, name: '游戏'},
+    {index: 11, name: '皮卡丘'},
+    {index: 21, name: '游戏'},
+    {index: 71, name: '皮卡丘'},
+    {index: 81, name: '游戏'},
+    {index: 101, name: '游戏'},
+    {index: 61, name: '游戏'},
+    {index: 91, name: '游戏'},
+    {index: 51, name: '游戏'},
+    {index: 41, name: '游戏'},
+    {index: 311, name: '游戏'},
+    {index: 411, name: '游戏'},
+    {index: 321, name: '游戏'}
   ];
 
   mounted() {
-    console.log(this.$route.query.type);
+    // console.log(this.$route.query.type);
+    // console.log(this.selectedTags[0].name);
+  }
+
+  toggle(tag: SelectedTags) {
+    // console.log(tag);
+    this.selectedTags = [];
+    this.selectedTags.push(tag);
+    // console.log(this.selectedTags[0].name);
+    this.$emit('toggle', this.selectedTags);
   }
 }
 </script>
 
 <style lang="scss" scoped>
+@import "~@/assets/style/helper.scss";
+
 .form-wrapper {
+  @extend %innerShadow;
   display: flex;
   align-items: center;
+  padding: 16px 32px;
+
+  .formItem {
+    padding-bottom: 0;
+    padding-left: 8px;
+  }
 }
 
-.current {
-  display: flex;
+.tags {
+  padding: 16px;
 
-  > li {
-    display: flex;
-    flex-direction: column;
-    width: 20%;
+  .title {
     padding-bottom: 16px;
+    padding-left: 16px;
+  }
 
-    .icon-wrapper {
+  .current {
+    display: flex;
+    flex-wrap: wrap;
+
+    > li {
       display: flex;
+      flex-direction: column;
       align-items: center;
-      justify-content: center;
-      background: #d9d9d988;
-      height: 36px;
-      width: 36px;
-      border-radius: 50%;
+      width: 20%;
+      padding-bottom: 16px;
 
-      .icon {
-        width: 24px;
-        height: 24px;
-        vertical-align: -0.15em;
-        fill: currentColor;
-        overflow: hidden;
+      &.selected {
+        .icon-wrapper {
+          background: #ffda4488;
+        }
+      }
+
+      .icon-wrapper {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: #d9d9d988;
+        height: 36px;
+        width: 36px;
+        border-radius: 50%;
+
+        .icon {
+          width: 24px;
+          height: 24px;
+          vertical-align: -0.15em;
+          fill: currentColor;
+          overflow: hidden;
+        }
       }
     }
+  }
+
+  .button-wrapper {
+    display: flex;
+    justify-content: center;
+    margin: 16px 0;
   }
 }
 </style>
