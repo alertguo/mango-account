@@ -6,9 +6,11 @@
       <div class="selected-wrapper">
         <Icon :name="selectedTags[0].name"/>
       </div>
-      <FormItem class="formItem"
+      <FormItem :value="inputContent"
+                class="formItem"
                 field-name=""
-                placeholder="输入标签名（不超过五个字）"/>
+                placeholder="输入标签名（不超过五个字）"
+                @update:value="editInput"/>
     </div>
     {{ selectedTags }}
     <div class="tags">
@@ -26,7 +28,7 @@
         </li>
       </ul>
       <div class="button-wrapper">
-        <button>
+        <button @click="addTag">
           保存新标签
         </button>
       </div>
@@ -45,6 +47,9 @@ type SelectedTags = {
   index: number;
   name: string;
 }
+const map: { [key: string]: string } = {
+  'tag name duplicated': '标签名重复了'
+};
 
 @Component({
   components: {FormItem, Tabs}
@@ -52,6 +57,7 @@ type SelectedTags = {
 export default class AddTag extends Vue {
   type = this.$route.query.type;
   recordTypeList = recordTypeList;
+  inputContent = '';
   commonTagList = [
     {index: 0, name: '皮卡丘'},
     {index: 1, name: '皮卡丘'},
@@ -79,13 +85,40 @@ export default class AddTag extends Vue {
   ];
   selectedTags: SelectedTags[] = [this.commonTagList[0]];
 
-  // create() {}
-
-  // mounted() {}
-
   toggle(tag: SelectedTags) {
     this.selectedTags = [];
     this.selectedTags.push(tag);
+  }
+
+  editInput(value: string) {
+    if (value.length >= 0 && value.length <= 5) {
+      this.inputContent = value;
+    }
+    // console.log('----');
+    // console.log('value');
+    // console.log(value);
+    // console.log(this.inputContent);
+    if (value.length > 5) {
+      this.inputContent = value.substring(0, 5);
+      // console.log(value);
+      // console.log(this.inputContent.length);
+    }
+  }
+
+  addTag() {
+    if (this.inputContent.length === 0) {return window.alert('标签名不能为空');}
+
+    const newTag = {
+      name: this.inputContent,
+      type: this.type,
+      svg: this.selectedTags[0].name
+    };
+    this.$store.commit('createTag', newTag);
+    if (this.$store.state.createTagError) {
+      if (this.$store.state.createTagError.message === 'tag name duplicated') {
+        window.alert(map[this.$store.state.createTagError.message] || '未知错误');
+      }
+    }
   }
 }
 </script>
