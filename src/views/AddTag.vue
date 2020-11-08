@@ -3,7 +3,9 @@
     <Tabs :data-source="recordTypeList"
           :value.sync="type"/>
     <div class="form-wrapper">
-      <Icon :name="selectedTags[0]"/>
+      <div class="selected-wrapper">
+        <Icon :name="selectedTags[0].name"/>
+      </div>
       <FormItem class="formItem"
                 field-name=""
                 placeholder="输入标签名（不超过五个字）"/>
@@ -50,8 +52,8 @@ type SelectedTags = {
 export default class AddTag extends Vue {
   type = this.$route.query.type;
   recordTypeList = recordTypeList;
-  selectedTags: SelectedTags[] = [];
   commonTagList = [
+    {index: 0, name: '皮卡丘'},
     {index: 1, name: '皮卡丘'},
     {index: 2, name: '游戏'},
     {index: 7, name: '皮卡丘'},
@@ -75,18 +77,15 @@ export default class AddTag extends Vue {
     {index: 411, name: '游戏'},
     {index: 321, name: '游戏'}
   ];
+  selectedTags: SelectedTags[] = [this.commonTagList[0]];
 
-  mounted() {
-    // console.log(this.$route.query.type);
-    // console.log(this.selectedTags[0].name);
-  }
+  // create() {}
+
+  // mounted() {}
 
   toggle(tag: SelectedTags) {
-    // console.log(tag);
     this.selectedTags = [];
     this.selectedTags.push(tag);
-    // console.log(this.selectedTags[0].name);
-    this.$emit('toggle', this.selectedTags);
   }
 }
 </script>
@@ -100,10 +99,26 @@ export default class AddTag extends Vue {
   align-items: center;
   padding: 16px 32px;
 
+  .selected-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #ffda4488;
+    height: 36px;
+    width: 36px;
+    border-radius: 50%;
+
+    .icon {
+      width: 24px;
+      height: 24px;
+    }
+  }
+
   .formItem {
     padding-bottom: 0;
     padding-left: 8px;
   }
+
 }
 
 .tags {
@@ -143,9 +158,6 @@ export default class AddTag extends Vue {
         .icon {
           width: 24px;
           height: 24px;
-          vertical-align: -0.15em;
-          fill: currentColor;
-          overflow: hidden;
         }
       }
     }
