@@ -70,8 +70,16 @@ const store = new Vuex.Store({
         store.commit('createTag', {name: '购物', type: '-', svg: '购物'});
         store.commit('createTag', {name: '交通', type: '-', svg: '交通'});
         store.commit('createTag', {name: '日用', type: '-', svg: '日用'});
-        store.commit('createTag', {name: '其他', type: '-', svg: '其他'});
+        store.commit('createTag', {name: '医疗', type: '-', svg: '医疗'});
+        store.commit('createTag', {name: '学习', type: '-', svg: '学习'});
+        store.commit('createTag', {name: '社交', type: '-', svg: '社交'});
+        store.commit('createTag', {name: '旅行', type: '-', svg: '旅行'});
+        store.commit('createTag', {name: '宠物', type: '-', svg: '宠物'});
         store.commit('createTag', {name: '工资', type: '+', svg: '工资'});
+        store.commit('createTag', {name: '兼职', type: '+', svg: '兼职'});
+        store.commit('createTag', {name: '理财', type: '+', svg: '理财'});
+        store.commit('createTag', {name: '礼金', type: '+', svg: '礼金'});
+        store.commit('createTag', {name: '其他', type: '+', svg: '其他'});
       }
     },
     createTag(state, newTag: NewTag) {
