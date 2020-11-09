@@ -1,18 +1,19 @@
 <template>
   <Layout>
     <Tabs :data-source="recordTypeList"
-          :value.sync="type"/>
+          :value.sync="newTag.type"/>
     <div class="form-wrapper">
       <div class="selected-wrapper">
         <Icon :name="selectedTags[0].name"/>
       </div>
-      <FormItem :value="inputContent"
+      <FormItem :value="newTag.name"
                 class="formItem"
                 field-name=""
                 placeholder="输入标签名（不超过五个字）"
                 @update:value="editInput"/>
     </div>
     {{ selectedTags }}
+    {{ newTag }}
     <div class="tags">
       <h3 class="title">
         选择图标
@@ -28,7 +29,7 @@
         </li>
       </ul>
       <div class="button-wrapper">
-        <button @click="addTag">
+        <button @click="addTag(newTag)">
           保存新标签
         </button>
       </div>
@@ -56,34 +57,33 @@ const map: { [key: string]: string } = {
   components: {FormItem, Tabs}
 })
 export default class AddTag extends Vue {
-  type = this.$route.query.type;
   recordTypeList = recordTypeList;
-  inputContent = '';
   commonTagList = commonTagList;
   selectedTags: SelectedTags[] = [this.commonTagList[0]];
+  newTag: NewTag = {name: '', type: this.$route.query.type, svg: this.selectedTags[0].name};
+
+  created() {
+    console.log(this.selectedTags);
+    console.log(this.newTag);
+  }
 
   toggle(tag: SelectedTags) {
     this.selectedTags = [];
     this.selectedTags.push(tag);
+    this.newTag.svg = this.selectedTags[0].name;
   }
 
   editInput(value: string) {
     if (value.length >= 0 && value.length <= 5) {
-      this.inputContent = value;
+      this.newTag.name = value;
     }
     if (value.length > 5) {
-      this.inputContent = value.substring(0, 5);
+      this.newTag.name = value.substring(0, 5);
     }
   }
 
-  addTag() {
-    if (this.inputContent.length === 0) {return window.alert('标签名不能为空');}
-
-    const newTag = {
-      name: this.inputContent,
-      type: this.type,
-      svg: this.selectedTags[0].name
-    };
+  addTag(newTag) {
+    if (this.newTag.name.length === 0) {return window.alert('标签名不能为空');}
     this.$store.commit('createTag', newTag);
     if (this.$store.state.createTagError) {
       if (this.$store.state.createTagError.message === 'tag name duplicated') {
