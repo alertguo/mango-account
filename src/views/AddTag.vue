@@ -12,8 +12,6 @@
                 placeholder="输入标签名（不超过五个字）"
                 @update:value="editInput"/>
     </div>
-    {{ selectedTags }}
-    {{ newTag }}
     <div class="tags">
       <h3 class="title">
         选择图标
@@ -59,11 +57,6 @@ export default class AddTag extends mixins(TagHelper) {
   commonTagList = commonTagList;
   selectedTags: SelectedTags[] = [this.commonTagList[0]];
   newTag: NewTag = {name: '', type: this.$route.query.type, svg: this.selectedTags[0].name};
-
-  created() {
-    console.log(this.selectedTags);
-    console.log(this.newTag);
-  }
 
   toggle(tag: SelectedTags) {
     this.selectedTags = [];
