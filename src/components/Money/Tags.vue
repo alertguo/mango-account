@@ -23,12 +23,11 @@
 </template>
 
 <script lang="ts">
+import Vue from 'vue';
 import {Component, Prop, Watch} from 'vue-property-decorator';
-import mixins from 'vue-class-component';
-import TagHelper from '@/mixins/TagHelper.ts';
 
 @Component
-export default class Tags extends mixins(TagHelper) {
+export default class Tags extends Vue {
   @Prop(String) value?: string;
   selectedTags: string[] = [];
 

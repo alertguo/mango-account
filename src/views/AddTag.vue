@@ -29,7 +29,7 @@
         </li>
       </ul>
       <div class="button-wrapper">
-        <button @click="addTag(newTag)">
+        <button @click="createTag(newTag)">
           保存新标签
         </button>
       </div>
@@ -38,25 +38,23 @@
 </template>
 
 <script lang="ts">
-import Vue from 'vue';
 import {Component} from 'vue-property-decorator';
 import Tabs from '@/components/Tabs.vue';
 import recordTypeList from '@/constants/recordTypeList';
 import FormItem from '@/components/Money/FormItem.vue';
 import commonTagList from '@/constants/commonTagList';
+import TagHelper from '@/mixins/TagHelper';
+import mixins from 'vue-class-component';
 
 type SelectedTags = {
   index: number;
   name: string;
 }
-const map: { [key: string]: string } = {
-  'tag name duplicated': '标签名重复了'
-};
 
 @Component({
   components: {FormItem, Tabs}
 })
-export default class AddTag extends Vue {
+export default class AddTag extends mixins(TagHelper) {
   recordTypeList = recordTypeList;
   commonTagList = commonTagList;
   selectedTags: SelectedTags[] = [this.commonTagList[0]];
@@ -79,16 +77,6 @@ export default class AddTag extends Vue {
     }
     if (value.length > 5) {
       this.newTag.name = value.substring(0, 5);
-    }
-  }
-
-  addTag(newTag) {
-    if (this.newTag.name.length === 0) {return window.alert('标签名不能为空');}
-    this.$store.commit('createTag', newTag);
-    if (this.$store.state.createTagError) {
-      if (this.$store.state.createTagError.message === 'tag name duplicated') {
-        window.alert(map[this.$store.state.createTagError.message] || '未知错误');
-      }
     }
   }
 }

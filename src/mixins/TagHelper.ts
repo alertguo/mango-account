@@ -7,14 +7,8 @@ const map: { [key: string]: string } = {
 
 @Component
 export class TagHelper extends Vue {
-  createTag(value: string) {
-    const name = window.prompt('请输入标签名');
-    if (!name) {return window.alert('标签名不能为空');}
-    const newTag = {
-      name,
-      type: value,
-      svg: name
-    };
+  createTag(newTag: NewTag) {
+    if (newTag.name.length === 0) {return window.alert('标签名不能为空');}
     this.$store.commit('createTag', newTag);
     if (this.$store.state.createTagError) {
       if (this.$store.state.createTagError.message === 'tag name duplicated') {
