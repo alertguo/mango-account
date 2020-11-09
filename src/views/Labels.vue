@@ -10,9 +10,11 @@
         <Icon name="right"/>
       </router-link>
     </div>
-    <Button @click="createTag(type)">
-      新建标签
-    </Button>
+    <router-link :to="{path: '/labels/add',query: {type}}">
+      <Button>
+        新建标签
+      </Button>
+    </router-link>
   </Layout>
 </template>
 
