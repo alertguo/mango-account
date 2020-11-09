@@ -14,6 +14,8 @@ export class TagHelper extends Vue {
       if (this.$store.state.createTagError.message === 'tag name duplicated') {
         window.alert(map[this.$store.state.createTagError.message] || '未知错误');
       }
+    }else {
+      window.alert('添加成功')
     }
   }
 }
