@@ -42,6 +42,7 @@ import {Component} from 'vue-property-decorator';
 import Tabs from '@/components/Tabs.vue';
 import recordTypeList from '@/constants/recordTypeList';
 import FormItem from '@/components/Money/FormItem.vue';
+import commonTagList from '@/constants/commonTagList';
 
 type SelectedTags = {
   index: number;
@@ -58,31 +59,7 @@ export default class AddTag extends Vue {
   type = this.$route.query.type;
   recordTypeList = recordTypeList;
   inputContent = '';
-  commonTagList = [
-    {index: 0, name: '皮卡丘'},
-    {index: 1, name: '皮卡丘'},
-    {index: 2, name: '游戏'},
-    {index: 7, name: '皮卡丘'},
-    {index: 8, name: '游戏'},
-    {index: 10, name: '游戏'},
-    {index: 6, name: '游戏'},
-    {index: 9, name: '游戏'},
-    {index: 5, name: '游戏'},
-    {index: 4, name: '游戏'},
-    {index: 3, name: '游戏'},
-    {index: 11, name: '皮卡丘'},
-    {index: 21, name: '游戏'},
-    {index: 71, name: '皮卡丘'},
-    {index: 81, name: '游戏'},
-    {index: 101, name: '游戏'},
-    {index: 61, name: '游戏'},
-    {index: 91, name: '游戏'},
-    {index: 51, name: '游戏'},
-    {index: 41, name: '游戏'},
-    {index: 311, name: '游戏'},
-    {index: 411, name: '游戏'},
-    {index: 321, name: '游戏'}
-  ];
+  commonTagList = commonTagList;
   selectedTags: SelectedTags[] = [this.commonTagList[0]];
 
   toggle(tag: SelectedTags) {
@@ -94,14 +71,8 @@ export default class AddTag extends Vue {
     if (value.length >= 0 && value.length <= 5) {
       this.inputContent = value;
     }
-    // console.log('----');
-    // console.log('value');
-    // console.log(value);
-    // console.log(this.inputContent);
     if (value.length > 5) {
       this.inputContent = value.substring(0, 5);
-      // console.log(value);
-      // console.log(this.inputContent.length);
     }
   }
 
