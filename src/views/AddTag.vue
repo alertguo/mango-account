@@ -56,7 +56,7 @@ export default class AddTag extends mixins(TagHelper) {
   recordTypeList = recordTypeList;
   commonTagList = commonTagList;
   selectedTags: SelectedTags[] = [this.commonTagList[0]];
-  newTag: NewTag = {name: '', type: this.$route.query.type, svg: this.selectedTags[0].name};
+  newTag: NewTag = {name: '', type: this.$route.query.type.toString(), svg: this.selectedTags[0].name};
 
   toggle(tag: SelectedTags) {
     this.selectedTags = [];
