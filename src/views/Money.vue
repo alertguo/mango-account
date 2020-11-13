@@ -9,12 +9,13 @@
                 placeholder="点击写备注..."
       />
     </div>
-    <div class="notes">
+    <div class="createAt">
       <Icon name="remark"/>
       <FormItem :value.sync="record.createdAt"
-                class="createAt"
+                class="formItem"
                 field-name="日期："
                 placeholder="点击写日期..."
+                type="datetime-local"
       />
     </div>
     <Tags :value="record.type" @update:value="record.tags = $event"/>
@@ -38,7 +39,7 @@ import recordTypeList from '@/constants/recordTypeList';
 })
 export default class Money extends Vue {
   record: RecordItem = {
-    tags: [], formItem: '', type: '-', amount: 0,createdAt: new Date().toISOString()
+    tags: [], formItem: '', type: '-', amount: 0, createdAt: new Date().toISOString()
   };
   recordTypeList = recordTypeList;
 
@@ -66,13 +67,14 @@ export default class Money extends Vue {
   display: flex;
   flex-direction: column-reverse;
 
-  .notes {
+  .notes, .createAt {
     display: flex;
     align-items: center;
     padding-left: 8px;
 
     .formItem {
-      padding: 4px 0;
+      flex-grow: 1;
+      padding: 2px 0;
     }
   }
 }
