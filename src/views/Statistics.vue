@@ -3,7 +3,9 @@
     <Tabs :data-source="recordTypeList"
           :value.sync="type"
           class-prefix="type"/>
-    <Chart :options="x"/>
+    <div ref="chartWrapper" class="chart-wrapper">
+      <Chart :options="x" class="chart"/>
+    </div>
     <ol v-if="groupedList.length > 0">
       <li v-for="(group,index) in groupedList" :key="index">
         <h3 class="title">
@@ -44,15 +46,30 @@ export default class Statistics extends Vue {
 
   get x() {
     return {
+      grid: {
+        left: 0,
+        right: 0,
+      },
       xAxis: {
         type: 'category',
-        data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
+        data: [
+          '1', '2', '3', '4', '5', '6', '7', '8', '9', '10',
+          '11', '12', '13', '14', '15', '16', '17', '18', '19', '20',
+          '21', '22', '23', '24', '25', '26', '27', '28', '29', '30',
+        ]
       },
       yAxis: {
-        type: 'value'
+        type: 'value',
+        show: false
       },
       series: [{
-        data: [820, 932, 901, 934, 1290, 1330, 1320],
+        data: [
+          820, 932, 901, 934, 1290, 1330, 1320,
+          820, 932, 901, 934, 1290, 1330, 1320,
+          820, 932, 901, 934, 1290, 1330, 1320,
+          820, 932, 901, 934, 1290, 1330, 1320,
+          820, 932
+        ],
         type: 'line'
       }],
       tooltip: {show: true}
@@ -62,7 +79,6 @@ export default class Statistics extends Vue {
   get recordList() {
     return (this.$store.state as RootState).recordList;
   }
-
 
   get groupedList() {
     const {recordList} = this;
@@ -87,6 +103,11 @@ export default class Statistics extends Vue {
       }, 0);
     });
     return result;
+  }
+
+  mounted() {
+    const div = this.$refs.chartWrapper as HTMLDivElement;
+    div.scrollLeft = 99999;
   }
 
   beautify(string: string) {
@@ -117,6 +138,19 @@ export default class Statistics extends Vue {
 
 
 <style lang="scss" scoped>
+.chart {
+  width: 430%;
+  max-height: 50vh;
+
+  &-wrapper {
+    overflow: auto;
+
+    &::-webkit-scrollbar {
+      display: none;
+    }
+  }
+}
+
 .noResult {
   padding: 16px;
   text-align: center;
