@@ -84,6 +84,15 @@ export default class Statistics extends Vue {
         data: keys,
         lineStyle: {
           color: '#333'
+        },
+        axisLabel: {
+          formatter: function (value: string, index: number) {
+            // 格式化成月/日，只在第一个刻度显示年份
+            if (index === 0) {
+              return value.substr(0, 4);
+            }
+            return value.substr(5);
+          }
         }
       },
       yAxis: {
