@@ -4,7 +4,7 @@
           :value.sync="type"
           class-prefix="type"/>
     <div ref="chartWrapper" class="chart-wrapper">
-      <Chart :options="x" class="chart"/>
+      <Chart :options="chartOptions" class="chart"/>
     </div>
     <ol v-if="groupedList.length > 0">
       <li v-for="(group,index) in groupedList" :key="index">
@@ -45,7 +45,7 @@ export default class Statistics extends Vue {
   type = '-';
   recordTypeList = recordTypeList;
 
-  get x() {
+  get keyValueList() {
     const today = new Date();
     const array = [];
     for (let i = 0; i <= 29; i++) {
@@ -56,21 +56,26 @@ export default class Statistics extends Vue {
         title: dateString
       })?.total | 0;
       array.push({
-        date: dateString, value: found
+        key: dateString, value: found
       });
     }
     // 排序
     array.sort((a, b) => {
-      if (a.date > b.date) {
+      if (a.key > b.key) {
         return 1;
-      } else if (a.date === b.date) {
+      } else if (a.key === b.key) {
         return 0;
       } else {
         return -1;
       }
     });
-    const keys = array.map(item => item.date);
-    const values = array.map(item => item.value);
+    return array;
+  }
+
+  get chartOptions() {
+
+    const keys = this.keyValueList.map(item => item.key);
+    const values = this.keyValueList.map(item => item.value);
     return {
       grid: {
         left: 0,
