@@ -52,27 +52,48 @@ export default class Statistics extends Vue {
       },
       xAxis: {
         type: 'category',
+        axisTick: {
+          alignWithLabel: true,
+        },
         data: [
           '1', '2', '3', '4', '5', '6', '7', '8', '9', '10',
           '11', '12', '13', '14', '15', '16', '17', '18', '19', '20',
           '21', '22', '23', '24', '25', '26', '27', '28', '29', '30',
-        ]
+        ],
+        lineStyle: {
+          color: '#333'
+        }
       },
       yAxis: {
         type: 'value',
-        show: false
+        show: false,
       },
       series: [{
+        symbol: 'circle',
+        symbolSize: 10,
         data: [
           820, 932, 901, 934, 1290, 1330, 1320,
           820, 932, 901, 934, 1290, 1330, 1320,
           820, 932, 901, 934, 1290, 1330, 1320,
           820, 932, 901, 934, 1290, 1330, 1320,
-          820, 932
+          820, 0
         ],
-        type: 'line'
+        type: 'line',
+        lineStyle: {
+          color: '#333',
+          width: 1
+        },
+        itemStyle: {
+          color: '#ffda44',
+          borderColor: '#333',
+        },
       }],
-      tooltip: {show: true}
+      tooltip: {
+        show: true,
+        triggerOn: 'click',
+        formatter: '{c}',
+        position: 'top',
+      }
     };
   }
 
