@@ -47,6 +47,8 @@ export default class Labels extends mixins(TagHelper) {
   background: #ffffff;
   font-size: 16px;
   padding-left: 16px;
+  max-height: 64vh;
+  overflow: auto;
   .tagIcon {
     margin-left: 4px;
   }
