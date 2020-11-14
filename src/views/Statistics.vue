@@ -191,7 +191,7 @@ export default class Statistics extends Vue {
 <style lang="scss" scoped>
 .chart {
   width: 430%;
-  max-height: 50vh;
+  max-height: 40vh;
 
   &-wrapper {
     overflow: auto;
