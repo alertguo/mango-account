@@ -152,6 +152,9 @@ export default class AddTag extends mixins(TagHelper) {
     display: flex;
     justify-content: center;
     margin: 16px 0;
+    > button {
+      padding: 8px;
+    }
   }
 }
 </style>
