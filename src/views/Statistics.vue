@@ -178,7 +178,7 @@ export default class Statistics extends Vue {
   }
 
   tagString(tags: Tag[]) {
-    return tags.map(t => t.name).join('，');
+    return tags.map(t => t.name).join('');
   }
 
   created() {
