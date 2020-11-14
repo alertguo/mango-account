@@ -158,7 +158,7 @@ export default class Statistics extends Vue {
 
   mounted() {
     const div = this.$refs.chartWrapper as HTMLDivElement;
-    div.scrollLeft = 99999;
+    div.scrollLeft = div.scrollWidth;
   }
 
   beautify(string: string) {
@@ -178,7 +178,7 @@ export default class Statistics extends Vue {
   }
 
   tagString(tags: Tag[]) {
-    return tags.map(t => t.name).join('');
+    return tags.map(t => t.name).join('，');
   }
 
   created() {
