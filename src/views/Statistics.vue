@@ -123,6 +123,9 @@ export default class Statistics extends Vue {
         triggerOn: 'click',
         formatter: '{c}',
         position: 'top',
+        axisPointer: {
+          precision: 'auto', //保留所有小数
+        },
       }
     };
   }
