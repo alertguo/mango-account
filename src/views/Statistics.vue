@@ -54,9 +54,9 @@ export default class Statistics extends Vue {
       // 找到对应的日期的值,不存在则为0
       const found = _.find(this.groupedList, {
         title: dateString
-      })?.total | 0;
+      });
       array.push({
-        key: dateString, value: found
+        key: dateString, value: found ? found.total : 0
       });
     }
     // 排序
