@@ -39,8 +39,13 @@ import recordTypeList from '@/constants/recordTypeList';
 })
 export default class Money extends Vue {
   record: RecordItem = {
-    tags: [], formItem: '', type: '-', amount: 0, createdAt: new Date().toISOString()
+    tags: [{id: '', name: '', type: '-', svg: '',}],
+    formItem: '',
+    type: '-',
+    amount: 0,
+    createdAt: new Date().toISOString()
   };
+  selectedTags: string[] = [];
   recordTypeList = recordTypeList;
 
   get recordList() {
@@ -52,14 +57,24 @@ export default class Money extends Vue {
   }
 
   saveRecord() {
+    this.record.tags = JSON.parse(window.localStorage.getItem('selectedTags') || '[]');
     this.$store.commit('createRecord', this.record);
     if (this.$store.state.createRecordError === null) {
       window.alert('已保存');
       this.record.formItem = '';
-      this.$store.commit('fetchTag');
     }
+    // this.clearDate();
   }
 
+  // clearDate() {
+  //   this.record = {
+  //     tags: JSON.parse(window.localStorage.getItem('selectedTags') || '[]'),
+  //     formItem: '',
+  //     type: this.record.type,
+  //     amount: 0,
+  //     createdAt: new Date().toISOString()
+  //   };
+  // }
 }
 </script>
 <style lang="scss" scoped>

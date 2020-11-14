@@ -38,17 +38,20 @@ export default class Tags extends Vue {
   created() {
     this.$store.commit('fetchTag');
     this.selectedTags.push(this.tagList[0]);
+    window.localStorage.setItem('selectedTags', JSON.stringify(this.selectedTags));
   }
 
   @Watch('value')
   onValueChanged() {
     this.selectedTags = [];
     this.selectedTags.push(this.tagList[0]);
+    window.localStorage.setItem('selectedTags', JSON.stringify(this.selectedTags));
   }
 
   toggle(tag: string) {
     this.selectedTags = [];
     this.selectedTags.push(tag);
+    window.localStorage.setItem('selectedTags', JSON.stringify(this.selectedTags));
     this.$emit('update:value', this.selectedTags);
   }
 }
