@@ -63,18 +63,7 @@ export default class Money extends Vue {
       window.alert('已保存');
       this.record.formItem = '';
     }
-    // this.clearDate();
   }
-
-  // clearDate() {
-  //   this.record = {
-  //     tags: JSON.parse(window.localStorage.getItem('selectedTags') || '[]'),
-  //     formItem: '',
-  //     type: this.record.type,
-  //     amount: 0,
-  //     createdAt: new Date().toISOString()
-  //   };
-  // }
 }
 </script>
 <style lang="scss" scoped>
