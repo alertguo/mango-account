@@ -19,4 +19,6 @@ git commit -m 'deploy'
 # 部署到 https://<USERNAME>.github.io/<REPO>
 git push -f git@github.com:alertguo/mango-account-website.git master:gh-pages
 
+git push -f git@gitee.com:alertguo/mango-account-website.git master:gh-pages
+
 cd -
