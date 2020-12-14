@@ -49,6 +49,9 @@ export default class Labels extends mixins(TagHelper) {
   padding-left: 16px;
   max-height: 64vh;
   overflow: auto;
+  &::-webkit-scrollbar {
+    display: none;
+  }
   .tagIcon {
     margin-left: 4px;
   }
