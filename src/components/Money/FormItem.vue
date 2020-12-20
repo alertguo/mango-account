@@ -12,6 +12,7 @@
         <input :placeholder="placeholder"
                :type="type || 'text'"
                :value="value"
+               maxlength="5"
                @input="onValueChanged($event.target.value)">
       </template>
     </label>
